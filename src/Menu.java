@@ -4,7 +4,7 @@ public class Menu {
 
 
     Scanner sc = new Scanner(System.in);
-    public void menuDanhBa(){
+    public void menuDanhBa() throws Exception {
         QuanLyDanhBa quanLyDanhBa = new QuanLyDanhBa();
         menu();
         int luaChon = sc.nextInt();
@@ -14,10 +14,11 @@ public class Menu {
             case 3 -> quanLyDanhBa.suaThongTinDanhBa();
             case 4 -> quanLyDanhBa.xoaDanhBa();
             case 5 -> quanLyDanhBa.timKiem();
-            case 6 -> quanLyDanhBa.ghiDanhBaRaFileNhiPhan("FileDanhBa.txt");
-            case 7 -> quanLyDanhBa.docDanhBaTuFileNhiPhan("FileDanhBa.txt");
-            case 8 -> quanLyDanhBa.quayLai();
-            case 9 -> quanLyDanhBa.thoatDanhba();
+            case 6 -> quanLyDanhBa.ghiRaFileCSV();
+            case 7 -> quanLyDanhBa.docTuFileCSV();
+            case 8 -> quanLyDanhBa.ghiDanhBaRaFileNhiPhan("FileDanhBa.txt");
+            case 9 -> quanLyDanhBa.docDanhBaTuFileNhiPhan("FileDanhBa.txt");
+            case 10 -> quanLyDanhBa.thoatDanhba();
         }
     }
     public void menu(){
@@ -29,10 +30,11 @@ public class Menu {
         System.out.println("|  3. Sửa thông tin danh bạ                       |");
         System.out.println("|  4. Xóa danh bạ                                 |");
         System.out.println("|  5. Tìm kiếm danh bạ                            |");
-        System.out.println("|  6. Viết danh bạ ra file                        |");
-        System.out.println("|  7. Đọc danh bạ từ file                         |");
-        System.out.println("|  8. Quay lại Menu                               |");
-        System.out.println("|  9. Thoát                                       |");
+        System.out.println("|  6. Ghi danh bạ ra file CSV                     |");
+        System.out.println("|  7. Đọc danh bạ từ file CSV                     |");
+        System.out.println("|  8. Ghi danh bạ ra file Txt                     |");
+        System.out.println("|  9. Đọc danh bạ từ file Txt                     |");
+        System.out.println("|  10. Thoát                                      |");
         System.out.println("|_________________________________________________/");
     }
 }

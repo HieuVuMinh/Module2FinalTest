@@ -4,7 +4,11 @@ public class Main {
         Menu menu = new Menu();
 
         do {
-            menu.menuDanhBa();
+            try {
+                menu.menuDanhBa();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }while (true);
 
     }

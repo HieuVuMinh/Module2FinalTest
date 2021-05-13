@@ -78,10 +78,14 @@ public class DanhBa implements Serializable {
         this.email = email;
     }
 
+    public String ToString(){
+        return  getSoDienThoai() +","+ getNhom() +","+ getHoTen() +","+ getGioiTinh() +","+ getDiaChi();
+    }
+
     @Override
     public String toString() {
-        return "DanhBa: " + "soDienThoai: " + soDienThoai + ", nhom: " + nhom +
-                ", hoTen: " + hoTen + ", gioiTinh: " + gioiTinh +
-                ", diaChi: " + diaChi;
+        return "DanhBa: " + "Số Điện Thoại: " + getSoDienThoai() + ", Nhóm: " + getNhom() +
+                ", Họ Tên: " + getHoTen() + ", Giới Tính: " + getGioiTinh() +
+                ", Địa chỉ: " + getDiaChi();
     }
 }
