@@ -1,9 +1,8 @@
 import java.util.Scanner;
 
 public class Menu {
-
-
     Scanner sc = new Scanner(System.in);
+
     public void menuDanhBa() throws Exception {
         QuanLyDanhBa quanLyDanhBa = new QuanLyDanhBa();
         menu();
@@ -23,13 +22,13 @@ public class Menu {
     }
     public void menu(){
         System.out.println("---------------------------------------------------");
-        System.out.println("|       **          DANH BẠ              **       |");
+        System.out.println("|  --------CHƯƠNG TRÌNH QUẢN LÝ DANH BẠ---------  |");
         System.out.println("|-------------------------------------------------|");
-        System.out.println("|  1. Hiển thị danh bạ                            |");
-        System.out.println("|  2. Thêm danh bạ                                |");
-        System.out.println("|  3. Sửa thông tin danh bạ                       |");
-        System.out.println("|  4. Xóa danh bạ                                 |");
-        System.out.println("|  5. Tìm kiếm danh bạ                            |");
+        System.out.println("|  1. Xem danh sách                               |");
+        System.out.println("|  2. Thêm mới                                    |");
+        System.out.println("|  3. Cập Nhật                                    |");
+        System.out.println("|  4. Xóa                                         |");
+        System.out.println("|  5. Tìm kiếm                                    |");
         System.out.println("|  6. Ghi danh bạ ra file CSV                     |");
         System.out.println("|  7. Đọc danh bạ từ file CSV                     |");
         System.out.println("|  8. Ghi danh bạ ra file Txt                     |");

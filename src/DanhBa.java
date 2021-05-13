@@ -84,7 +84,7 @@ public class DanhBa implements Serializable {
 
     @Override
     public String toString() {
-        return "DanhBa: " + "Số Điện Thoại: " + getSoDienThoai() + ", Nhóm: " + getNhom() +
+        return "Danh Bạ: " + "Số Điện Thoại: " + getSoDienThoai() + ", Nhóm: " + getNhom() +
                 ", Họ Tên: " + getHoTen() + ", Giới Tính: " + getGioiTinh() +
                 ", Địa chỉ: " + getDiaChi();
     }

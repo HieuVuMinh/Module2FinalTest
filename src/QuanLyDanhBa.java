@@ -25,15 +25,16 @@ public class QuanLyDanhBa {
     public QuanLyDanhBa() {
         danhBaList.add(new DanhBa("0982339722", 1, "Hieu", "nam",
                 "HN", "16/10/1997", "vuhieu638282@gmail.com"));
-        danhBaList.add(new DanhBa("0982339211", 2, "Ly", "nu",
+        danhBaList.add(new DanhBa("0982339211", 2, "Ly", "nữ",
                 "HN", "11/3/1997", "lydass@gmail.com"));
     }
 
     // 1. Hien thi
     public void hienThi() {
-        for (DanhBa danhBa : danhBaList) {
-            System.out.println(danhBa);
-        }
+        docDanhBaTuFileNhiPhan("FileDanhBa.txt");
+//        for (DanhBa danhBa : danhBaList) {
+//            System.out.println(danhBa);
+//        }
     }
 
     // 2. Them danh ba
@@ -44,21 +45,8 @@ public class QuanLyDanhBa {
     }
 
     private DanhBa nhapThongTinDanhBa() {
-        while (true) {
-            System.out.println("Nhập số điện thoại mới: ");
-            soDienThoai = sc.nextLine();
-            boolean isTrue = false;
-            boolean dienThoai = regexDienThoai(soDienThoai);
-            if (dienThoai) {
-                isTrue = true;
-            }
-            if (isTrue) {
-                break;
-            } else {
-                System.err.println("Nhập số điện thoại không đúng");
-            }
-        }
-//        isFinds(soDienThoai, sdtDaTonTai);
+        System.out.println("Nhập số điện thoại mới: ");
+        soDienThoai = regexDienThoai();
         System.out.println("Nhập nhóm: ");
         nhom = sc.nextInt();
         sc.nextLine();
@@ -72,42 +60,45 @@ public class QuanLyDanhBa {
         ngaySinh = sc.nextLine();
         System.out.println("Nhập email: ");
         email = regexEmail();
-        isFinds(email, emailDaTonTai);
         DanhBa danhBa = new DanhBa(soDienThoai, nhom, hoTen, gioiTinh, diaChi, ngaySinh, email);
         return danhBa;
     }
 
     public String regexEmail() {
-        System.out.println("Nhập email: ");
         String email = sc.nextLine();
         if (email.matches("^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)$")) {
             return email;
         } else {
+            System.err.println("Nhập không đúng Email!");
             return regexEmail();
         }
     }
 
-    public boolean regexDienThoai(String soDienThoai) {
-        Pattern pattern = Pattern.compile("^[0-9]{10,11}$");
-        Matcher matcher = pattern.matcher(soDienThoai);
-        return matcher.matches();
-    }
-
-    private void isFinds(String string, String thongbao) {
-        while (true) {
-            boolean isFind = false;
-            for (DanhBa danhBa : danhBaList) {
-                if (danhBa.getSoDienThoai().equals(string)) {
-                    isFind = true;
-                }
-            }
-            if (!isFind) {
-                break;
-            } else {
-                System.err.println(thongbao);
-            }
+    public String regexDienThoai() {
+        String soDienThoai = sc.nextLine();
+        if (soDienThoai.matches("^[0-9]{10,11}$")) {
+            return soDienThoai;
+        } else {
+            System.err.println("Nhập không đúng số điện thoại!");
+            return regexDienThoai();
         }
     }
+
+//    private void isFinds(String string, String thongbao) {
+//        while (true) {
+//            boolean isFind = false;
+//            for (DanhBa danhBa : danhBaList) {
+//                if (danhBa.getSoDienThoai().equals(string)) {
+//                    isFind = true;
+//                }
+//            }
+//            if (!isFind)
+//                break;
+//            else {
+//                System.err.println(thongbao);
+//            }
+//        }
+//    }
 
     // 3. Sửa thông tin danh bạ
     public void suaThongTinDanhBa() {
@@ -126,6 +117,7 @@ public class QuanLyDanhBa {
             danhBa.setNgaySinh(ngaySinh);
             danhBa.setEmail(email);
         }
+        ghiDanhBaRaFileNhiPhan("FileDanhBa.txt");
     }
 
     // 4. Xóa danh bạ
@@ -140,6 +132,7 @@ public class QuanLyDanhBa {
             String yes = sc.nextLine();
             if (yes.equals("y")) {
                 danhBaList.remove(danhBa);
+                ghiDanhBaRaFileNhiPhan("FileDanhBa.txt");
             } else {
                 try {
                     menu.menuDanhBa();
