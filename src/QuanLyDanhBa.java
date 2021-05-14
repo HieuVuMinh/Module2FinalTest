@@ -30,8 +30,15 @@ public class QuanLyDanhBa {
     }
 
     // 1. Hien thi
-    public void hienThi() {
-        docDanhBaTuFileNhiPhan("FileDanhBa.txt");
+    public void hienThi() throws Exception {
+        System.out.println("1. File Txt");
+        System.out.println("2. File CSV");
+        int selection = sc.nextInt();
+        switch (selection){
+            case 1 -> docDanhBaTuFileNhiPhan("FileDanhBa.txt");
+            case 2 -> System.out.println(docTuFileCSV());
+            default -> menu.menuDanhBa();
+        }
 //        for (DanhBa danhBa : danhBaList) {
 //            System.out.println(danhBa);
 //        }
@@ -42,11 +49,20 @@ public class QuanLyDanhBa {
         DanhBa danhBa = nhapThongTinDanhBa();
         danhBaList.add(danhBa);
         ghiDanhBaRaFileNhiPhan("FileDanhBa.txt");
+        ghiRaFileCSV();
     }
 
     private DanhBa nhapThongTinDanhBa() {
         System.out.println("Nhập số điện thoại mới: ");
         soDienThoai = regexDienThoai();
+        for (DanhBa danhBa: danhBaList) {
+            if (danhBa.getSoDienThoai().equals(soDienThoai)){
+                System.err.println(sdtDaTonTai);
+                nhapThongTinDanhBa();
+            } else {
+                break;
+            }
+        }
         System.out.println("Nhập nhóm: ");
         nhom = sc.nextInt();
         sc.nextLine();
@@ -171,7 +187,39 @@ public class QuanLyDanhBa {
         }
     }
 
-    // 6. Viết danh bạ ra file
+    // 6. Ghi danh bạ ra file CSV
+    public void ghiRaFileCSV(){
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("contacts.csv"));
+            String[] str;
+            for (DanhBa danhBa : danhBaList) {
+                str = danhBa.ToString().split(",");
+                for (String s : str) {
+                    bufferedWriter.write(s + ",");
+                }
+                bufferedWriter.newLine();
+            }
+            System.out.println("File CSV đã được cập nhật");
+            bufferedWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 7. Đọc danh bạ từ file CSV
+    public String docTuFileCSV() throws Exception {
+        FileReader fileReader = new FileReader(new File("contacts.csv"));
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String hienThi = "";
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            hienThi = hienThi.concat(line);
+            hienThi = hienThi.concat("\n");
+        }
+        return hienThi;
+    }
+
+    // 8. Viết danh bạ ra file Txt
     public void ghiDanhBaRaFileNhiPhan(String nameFile) {
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nameFile));
@@ -183,7 +231,7 @@ public class QuanLyDanhBa {
         }
     }
 
-    // 7. Đọc danh bạ từ file
+    // 9. Đọc danh bạ từ file Txt
     public void docDanhBaTuFileNhiPhan(String nameFile) {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nameFile));
@@ -197,39 +245,8 @@ public class QuanLyDanhBa {
         }
     }
 
-    // 8. Thoát
+    // 10. Thoát
     public void thoatDanhba() {
         System.exit(0);
-    }
-
-    // Ghi danh bạ ra file CSV
-    public void ghiRaFileCSV() throws Exception {
-        try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("contacts.csv"));
-            String[] str;
-            for (DanhBa danhBa : danhBaList) {
-                str = danhBa.ToString().split(",");
-                for (String s : str) {
-                    bufferedWriter.write(s + ",");
-                }
-                bufferedWriter.newLine();
-            }
-            bufferedWriter.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Đọc danh bạ từ file CSV
-    public String docTuFileCSV() throws Exception {
-        FileReader fileReader = new FileReader(new File("contacts.csv"));
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String hienThi = "";
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            hienThi = hienThi.concat(line);
-            hienThi = hienThi.concat("\n");
-        }
-        return hienThi;
     }
 }

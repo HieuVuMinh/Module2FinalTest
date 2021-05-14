@@ -14,7 +14,7 @@ public class Menu {
             case 4 -> quanLyDanhBa.xoaDanhBa();
             case 5 -> quanLyDanhBa.timKiem();
             case 6 -> quanLyDanhBa.ghiRaFileCSV();
-            case 7 -> quanLyDanhBa.docTuFileCSV();
+            case 7 -> System.out.println(quanLyDanhBa.docTuFileCSV());
             case 8 -> quanLyDanhBa.ghiDanhBaRaFileNhiPhan("FileDanhBa.txt");
             case 9 -> quanLyDanhBa.docDanhBaTuFileNhiPhan("FileDanhBa.txt");
             case 10 -> quanLyDanhBa.thoatDanhba();
